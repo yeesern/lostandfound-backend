@@ -15,13 +15,14 @@ app.use(cors());
 app.use('/posts', postRoutes);
 app.use("/user", userRouter);
 
-app.get('/',(req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello to Company Lost & Found Report Site');
 });
 
 const CONNECTION_URL = "mongodb+srv://flashpointproject:flashpoint123@cluster-capstone.qi3pnn1.mongodb.net/flashpoint?retryWrites=true&w=majority"
+
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL)
+mongoose.connect(CONNECTION_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((error) => console.log(error.message)); 
